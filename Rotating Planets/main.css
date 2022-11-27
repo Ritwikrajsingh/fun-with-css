@@ -1,0 +1,217 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    transform: scaleX(5);
+}
+
+.sun{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: absolute;
+    transform: scaleX(.2);
+    background-color: rgb(248, 244, 163);
+    box-shadow: 0 0 60px rgb(253, 203, 163), 0 0 98px rgb(184, 160, 26);
+}
+.orbit{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    animation: revolve 12s infinite linear;
+}
+
+.planet{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    transform: scaleX(.2);
+}
+
+.planet::after{
+    content: '';
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+}
+
+.exosphere{
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    animation: simulate 12s infinite linear;
+}
+
+.planet-occlusion{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+#first-planet{
+    background-color: blue;
+    animation: firstPlanetShadow 12s infinite linear;
+}
+
+#first-planet:after{
+    animation: firstPlanetShadowAnimator 12s infinite linear;
+}
+
+#first-planet-occlusion{
+    animation: firstPlanetOcclusion 12s infinite;
+}
+
+#second-planet{
+    background-color: rgb(233, 75, 75);
+    animation: secondPlanetShadow 12s linear infinite;
+}
+#second-planet:after{
+    animation: secondPlanetShadowAnimator 12s infinite linear;
+}
+
+#second-planet-exosphere{
+    left: 85px;
+}
+
+#second-planet-occlusion{
+    animation: secondPlanetOcclusion 12s infinite;
+
+}
+
+#third-planet{
+    background-color: green;
+    animation: thirdPlanetShadow 12s linear infinite;
+}
+#third-planet:after{
+    animation: thirdPlanetShadowAnimator 12s infinite linear;
+}
+
+#third-planet-exosphere{
+    left: 43px;
+    top: 100px;
+}
+
+#third-planet-occlusion{
+    animation: thirdPlanetOcclusion 12s infinite;
+
+}
+
+@keyframes revolve {
+    0%{transform: rotateZ(0deg);}
+
+    100%{transform: rotateZ(360deg);}
+}
+
+@keyframes simulate {
+    0%{transform: rotateZ(360deg);}
+
+    100%{transform: rotateZ(0deg);}
+}
+
+@keyframes firstPlanetOcclusion {  
+    0%{z-index: 999;
+        transform: scale(.9);}
+    15%{z-index: -999;
+        transform: scale(.8); }
+    50%{transform: scale(.9);}
+    75%{
+        transform: scale(1.0);}
+    100%{z-index: 999;
+        transform: scale(.9);}
+}
+
+@keyframes secondPlanetOcclusion {  
+    0%{z-index: -999;
+        transform: scale(.9);}
+    25%{transform: scale(1.0); }
+    50%{transform: scale(.9); }
+    60%{z-index: 999;}
+    75%{transform: scale(.8);}
+    100%{z-index: -999;
+        transform: scale(.9);}
+}
+
+@keyframes thirdPlanetOcclusion {  
+    0%{z-index: 999;
+        transform: scale(1.0);}
+    25%{transform: scale(.9);}
+    50%{z-index: -999;
+        transform: scale(0.8);}
+    75%{transform: scale(0.9);}
+    100%{z-index: 999;
+        transform: scale(1.0);}
+}
+
+@keyframes firstPlanetShadow {
+    0%{background: linear-gradient(-90deg, rgb(75, 115, 235) 50%, rgb(0, 0, 185) 50%);}
+    12%{background: linear-gradient(-90deg, rgb(75, 115, 235) 50%, rgb(0, 0, 185) 50%);}
+    12.1%{background: linear-gradient(90deg, rgb(75, 115, 235) 50%, rgb(0, 0, 185) 50%);}
+    62%{background: linear-gradient(90deg, rgb(75, 115, 235) 50%, rgb(0, 0, 185) 50%);}
+    62.1%{background: linear-gradient(-90deg, rgb(75, 115, 235) 50%, rgb(0, 0, 185) 50%);}
+    100%{background: linear-gradient(-90deg, rgb(75, 115, 235) 50%, rgb(0, 0, 185) 50%);}
+}
+
+@keyframes secondPlanetShadow {
+    0%{        background: linear-gradient(90deg, rgb(235, 95, 95) 50%, rgb(185, 0, 0) 50%);}
+    40%{        background: linear-gradient(90deg, rgb(255, 95, 95) 50%, rgb(185, 0, 0) 50%);}
+    40.1%{        background: linear-gradient(-90deg, rgb(235, 95, 95) 50%, rgb(185, 0, 0) 50%);}
+    90%{        background: linear-gradient(-90deg, rgb(235, 95, 95) 50%, rgb(185, 0, 0) 50%);}
+    90.1%{        background: linear-gradient(90deg, rgb(235, 95, 95) 50%, rgb(185, 0, 0) 50%);}
+    100%{        background: linear-gradient(90deg, rgb(235, 95, 95) 50%, rgb(185, 0, 0) 50%);}
+}
+
+@keyframes thirdPlanetShadow {
+    0%{        background: linear-gradient(-90deg, rgb(75, 235, 75) 50%, rgb(0, 135, 0) 50%);}
+    49%{        background: linear-gradient(-90deg, rgb(75, 235, 75) 50%, rgb(0, 135, 0) 50%);}
+    49.1%{        background: linear-gradient(90deg, rgb(75, 235, 75) 50%, rgb(0, 135, 0) 50%);}
+    99%{        background: linear-gradient(90deg, rgb(75, 235, 75) 50%, rgb(0, 135, 0) 50%);}
+    99.1%{        background: linear-gradient(-90deg, rgb(75, 235, 75) 50%, rgb(0, 135, 0) 50%);}
+    100%{        background: linear-gradient(-90deg, rgb(75, 235, 75) 50%, rgb(0, 135, 0) 50%);}
+}
+
+@keyframes firstPlanetShadowAnimator {
+    0%{transform: scaleX(-0.2); background-color: rgb(75, 115, 235);}
+    12%{transform: scaleX(-1); background-color: rgb(75, 115, 235);}
+    12.1%{transform: scaleX(1); background-color: rgb(75, 115, 235);}
+    37%{transform: scaleX(0); background-color: rgb(75, 115, 235);}
+    37.1%{transform: scaleX(0); background-color: rgb(0, 0, 185);}
+    62%{transform: scaleX(-1); background-color: rgb(0, 0, 185);}
+    62.1%{transform: scaleX(1); background-color: rgb(0, 0, 185);}
+    87%{transform: scaleX(0); background-color: rgb(0, 0, 185);}
+    87.1%{transform: scaleX(0); background-color: rgb(75, 115, 235);}    
+    100%{transform: scaleX(-0.2); background-color: rgb(75, 115, 235);}
+}
+
+@keyframes secondPlanetShadowAnimator {
+    0%{transform: scaleX(0.5); background-color: rgb(235, 95, 95);}
+    15%{transform: scaleX(0); background-color: rgb(235, 95, 95);}
+    15.1%{transform: scaleX(0); background-color: rgb(185, 0, 0);}
+    40%{transform: scaleX(-1); background-color: rgb(185, 0, 0);}
+    40.1%{transform: scaleX(1); background-color: rgb(185, 0, 0);}
+    65%{transform: scaleX(0); background-color: rgb(185, 0, 0);}
+    65.1%{transform: scaleX(0); background-color: rgb(235, 95, 95);}
+    90%{transform: scaleX(-1); background-color: rgb(235, 95, 95);}
+    90.1%{transform: scaleX(1); background-color: rgb(235, 95, 95);} 
+    100%{transform: scaleX(0.5); background-color:rgb(235, 95, 95);}
+}
+
+@keyframes thirdPlanetShadowAnimator { 
+    0%{transform: scaleX(1); background-color: rgb(0, 135, 0);}
+    25%{transform: scaleX(0); background-color: rgb(0, 135, 0);}
+    25.1%{transform: scaleX(0); background-color: rgb(75, 235, 75);}
+    49%{transform: scaleX(-1); background-color: rgb(75, 235, 75);}
+    49.1%{transform: scaleX(1); background-color: rgb(75, 235, 75);}
+    75%{transform: scaleX(0); background-color: rgb(75, 235, 75);}
+    75.1%{transform: scaleX(0); background-color: rgb(0, 135, 0);}
+    100%{transform: scaleX(1); background-color:rgb(0, 135, 0);}
+}
